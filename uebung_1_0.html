@@ -37,7 +37,18 @@
     var container = document.querySelector('#container');
 
     async function getGif() {
-        // Dein Code hier
+        let response = await fetch('https://api.giphy.com/v1/gifs/random?api_key=vteZ9Q3wIUEvN7heLsE7bazziLfqxerV&limit=1&tag=puppy');
+        let json = await response.json();
+
+        let container = document.querySelector('#container');
+        container.innerHTML = '';
+
+        let figure = document.createElement('figure');
+        figure.innerHTML = `
+        <img src="${json.data.images.original.url}" width="${json.data.images.original.width}" height="${json.data.images.original.height}">
+        <figcaption>${json.data.title}</figcaption>`;
+
+        container.appendChild(figure);
     }
 
 </script>
